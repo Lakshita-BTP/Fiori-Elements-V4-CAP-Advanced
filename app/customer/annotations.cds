@@ -5,39 +5,12 @@ annotate service.Passenger with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Value : createdAt,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : createdBy,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : LastChangedAt,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : LastChangedBy,
-            },
-            {
-                $Type : 'UI.DataField',
                 Value : CustomerID,
             },
             {
                 $Type : 'UI.DataField',
-                Value : FirstName,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : LastName,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : Title,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : Street,
+                Label : 'CountryCode_code',
+                Value : CountryCode_code,
             },
             {
                 $Type : 'UI.DataField',
@@ -49,20 +22,7 @@ annotate service.Passenger with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'CountryCode_code',
-                Value : CountryCode_code,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : PhoneNumber,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : EMailAddress,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : FullName,
+                Value : Street,
             },
         ],
     },
@@ -105,5 +65,38 @@ annotate service.Passenger with @(
         City,
         PostalCode,
     ],
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Contact Details',
+            ID : 'ContactDetails',
+            Target : '@UI.FieldGroup#ContactDetails',
+        },
+    ],
+    UI.FieldGroup #ContactDetails : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : FullName,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : PhoneNumber,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : EMailAddress,
+            },
+        ],
+    },
+    UI.HeaderInfo : {
+        TypeName : '{i18n>CustomerID}',
+        TypeNamePlural : '{i18n>Customers}',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : FullName,
+        },
+    },
 );
 
