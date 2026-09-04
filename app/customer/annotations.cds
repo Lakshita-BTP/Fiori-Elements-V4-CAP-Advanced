@@ -89,15 +89,15 @@ annotate service.Passenger with @(
         },
         {
             $Type : 'UI.DataField',
+            Value : City,
+        },
+        {
+            $Type : 'UI.DataField',
             Value : PostalCode,
         },
         {
             $Type : 'UI.DataField',
             Value : Street,
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : City,
         },
     ],
     UI.SelectionFields : [
