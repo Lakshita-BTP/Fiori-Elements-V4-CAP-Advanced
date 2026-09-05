@@ -193,11 +193,23 @@ annotate TravelService.Travel with @(
             ID : 'TotalPrice',
             Target : '@UI.DataPoint#TotalPrice',
         },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'Progress',
+            Target : '@UI.DataPoint#progress',
+        },
     ],
     UI.DataPoint #TotalPrice : {
         $Type : 'UI.DataPointType',
         Value : TotalPrice,
         Title : '{i18n>TotalPrice}',
+    },
+    UI.DataPoint #progress : {
+        $Type : 'UI.DataPointType',
+        Value : Progress,
+        Title : '{i18n>ProgressOfTravel}',
+        TargetValue : 100,
+        Visualization : #Progress,
     },
 );
 
@@ -304,6 +316,40 @@ annotate TravelService.Booking with @(
             Measure  : TotalSupplPrice,
         }, ],
     },
+    UI.DataPoint #TotalSupplPrice1 : {
+        Value : TotalSupplPrice,
+        MinimumValue : 0,
+        MaximumValue : 120,
+        TargetValue: 100,
+        Visualization: #BulletChart,
+        CriticalityCalulation: {
+            $Type : 'UI.CriticalityCalculation',
+            ImprovementDirection: #Maximize,
+            DeviationRangeLowValue: 20,
+            ToleranceRangeLowValue: 75
+        }
+    },
+    UI.Chart #TotalSupplPrice1 : {
+        ChartType : #Bullet,
+        Title : '{i18n>TotalSupplements}',
+        Measures : [
+            TotalSupplPrice,
+        ],
+        MeasureAttributes : [
+            {
+                DataPoint : '@UI.DataPoint#TotalSupplPrice1',
+                Role : #Axis1,
+                Measure : TotalSupplPrice,
+            },
+        ],
+    },
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'TotalSupplPrice',
+            Target : '@UI.Chart#TotalSupplPrice1',
+        },
+    ],
 );
 
 annotate TravelService.BookingSupplement with @UI: {
