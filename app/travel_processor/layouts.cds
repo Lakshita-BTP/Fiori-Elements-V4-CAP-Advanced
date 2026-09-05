@@ -56,7 +56,12 @@ annotate TravelService.Travel with @(
                 $Type : 'UI.DataFieldForAction',
                 Action: 'TravelService.rejectTravel',
                 Label : '{i18n>RejectTravel}'
-            }
+            },
+            {
+                $Type : 'UI.DataFieldForAction',
+                Action : 'TravelService.deductDiscount',
+                Label : '{i18n>DeductDiscount}',
+            },
         ],
         HeaderInfo                : {
             TypeName      : '{i18n>Travel}',
@@ -170,6 +175,29 @@ annotate TravelService.Travel with @(
         Value        : Progress,
         Visualization: #Progress,
         TargetValue  : 100,
+    },
+    UI.DataPoint #TravelStatus_code : {
+        $Type : 'UI.DataPointType',
+        Value : TravelStatus_code,
+        Title : '{i18n>TravelStatus}',
+        Criticality : TravelStatus.criticality,
+    },
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'TravelStatus_code',
+            Target : '@UI.DataPoint#TravelStatus_code',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'TotalPrice',
+            Target : '@UI.DataPoint#TotalPrice',
+        },
+    ],
+    UI.DataPoint #TotalPrice : {
+        $Type : 'UI.DataPointType',
+        Value : TotalPrice,
+        Title : '{i18n>TotalPrice}',
     },
 );
 
@@ -331,3 +359,11 @@ annotate TravelService.TravelAgency with @(Communication.Contact #contact: {
         country : CountryCode_code,
     }, ],
 });
+annotate TravelService.TravelStatus with @(
+    UI.DataPoint #code : {
+        $Type : 'UI.DataPointType',
+        Value : code,
+        Title : 'code',
+    }
+);
+
