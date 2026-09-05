@@ -1,5 +1,7 @@
 using TravelService from '../../srv/travel-service';
 using from '../../db/schema';
+using from '../../db/master-data';
+
 
 
 //
@@ -87,6 +89,11 @@ annotate TravelService.Travel with @(
                 $Type : 'UI.DataFieldForAnnotation',
                 Target: '@UI.DataPoint#Progress',
                 Label : '{i18n>ProgressOfTravel}',
+            },
+            {
+                $Type : 'UI.DataFieldForAnnotation',
+                Target : 'to_Agency/@Communication.Contact#contact',
+                Label : '{i18n>AgencyID}',
             },
         ],
         Facets                : [
@@ -271,3 +278,27 @@ SortOrder: [{
     Property  : FlightDate,
     Descending: true
 }]}};
+annotate TravelService.TravelAgency with @(
+    Communication.Contact #contact : {
+        $Type : 'Communication.ContactType',
+        fn : Name,
+        tel : [
+            {
+                $Type : 'Communication.PhoneNumberType',
+                type : #work,
+                uri : PhoneNumber,
+            },
+        ],
+        adr : [
+            {
+                $Type : 'Communication.AddressType',
+                type : #work,
+                street : Street,
+                locality : City,
+                code : PostalCode,
+                country : CountryCode_code,
+            },
+        ],
+    }
+);
+
