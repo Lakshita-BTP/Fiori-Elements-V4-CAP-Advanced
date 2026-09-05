@@ -166,7 +166,14 @@ annotate TravelService.Travel with @(
                     ID    : 'TravelData',
                     Target: '@UI.FieldGroup#TravelData',
                     Label : '{i18n>GeneralInformation}'
-                }]
+                },
+                    {
+                        $Type : 'UI.ReferenceFacet',
+                        Label : '{i18n>TravelAdministrativeData}',
+                        ID : 'TravelAdministrativeData',
+                        Target : '@UI.FieldGroup#TravelAdministrativeData',
+                        @UI.PartOfPreview : false,
+                    },]
             },
             { // booking list
                 $Type : 'UI.ReferenceFacet',
@@ -238,6 +245,23 @@ annotate TravelService.Travel with @(
         Title        : '{i18n>ProgressOfTravel}',
         TargetValue  : 100,
         Visualization: #Progress,
+    },
+    UI.FieldGroup #TravelAdministrativeData : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : createdAt,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : LastChangedAt,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : createdBy,
+            },
+        ],
     },
 );
 
